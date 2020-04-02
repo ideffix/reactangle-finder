@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Board from './components/Board'
+import Canvas from './components/Canvas'
+import { findRectangles } from './service/rectangleService'
+import Result from './components/Result'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [activePoints, setActivePoints] = useState([])
+    const rectangles = findRectangles(activePoints)
+    return (
+        <div className="flex">
+            <Board
+                onActivePointsChange={setActivePoints}
+                activePoints={activePoints}
+            />
+            <Canvas activePoints={activePoints} rectangles={rectangles} />
+            <Result rectangles={rectangles} />
+        </div>
+    )
 }
 
-export default App;
+export default App
