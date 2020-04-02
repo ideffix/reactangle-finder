@@ -9,10 +9,8 @@ export const findRectangles = (points) => {
                         ...arr[i],
                         rectangles: [
                             ...arr[i].rectangles,
-                            ...arr[i].rectangles.map((r) =>
-                                r.map((p) =>
-                                    p.x === arr[i].x ? p : { ...p, x: x1 }
-                                )
+                            ...arr[i].rectangles.map(
+                                rectangleMapper(arr[i], x1)
                             ),
                             [
                                 { x: x1, y: y1 },
@@ -30,3 +28,6 @@ export const findRectangles = (points) => {
     }
     return arr.flatMap((o) => o.rectangles)
 }
+
+const rectangleMapper = (point, x) => (r) =>
+    r.map((p) => (p.x === point.x ? p : { ...p, x }))

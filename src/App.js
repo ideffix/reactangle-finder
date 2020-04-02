@@ -8,14 +8,16 @@ const App = () => {
     const [activePoints, setActivePoints] = useState([])
     const rectangles = findRectangles(activePoints)
     return (
-        <div className="flex">
-            <Board
-                onActivePointsChange={setActivePoints}
-                activePoints={activePoints}
-            />
+        <>
+            <div className="flex">
+                <Board
+                    onActivePointsChange={setActivePoints}
+                    activePoints={activePoints}
+                />
+                <Result rectangles={rectangles} />
+            </div>
             <Canvas activePoints={activePoints} rectangles={rectangles} />
-            <Result rectangles={rectangles} />
-        </div>
+        </>
     )
 }
 

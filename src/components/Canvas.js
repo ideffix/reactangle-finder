@@ -25,7 +25,7 @@ const Canvas = ({ activePoints, rectangles }) => {
         }
     }, [activePoints, rectangles])
 
-    return <canvas ref={ref} width={500} height={500} />
+    return <canvas ref={ref} width={1000} height={700} />
 }
 
 const getRandomColor = () => {
